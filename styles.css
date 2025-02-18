@@ -1,0 +1,50 @@
+body{
+    display:flex;
+    flex-direction: column;
+    gap: 10px;
+    background-color: #3AAFA9;
+}
+.maincontainer{
+    align-self: center;
+    margin: auto;
+    width: 300px;
+    height: 250px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    border-radius: 5px;
+    background-color: #2B7A78;
+    padding: 10px;
+}
+#display{
+    width: 300px;
+    height: 50px;
+    border: 2px solid grey;
+    border-radius: 5px;
+    text-align: center;
+    background-color: #DEF2F1;
+}
+.thirdrow, .firstrow, .secondrow{
+    display:flex;
+    gap: 5px;
+}
+.numbers{
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+.operatorcontainer{
+    display: flex;
+    gap: 10px;
+}
+.operator2container{
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+button{
+    border: 1px solid black;
+    border-radius: 10px;
+    width: 50px;
+    background-color: #DEF2F1;
+}
