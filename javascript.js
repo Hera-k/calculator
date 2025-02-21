@@ -8,7 +8,7 @@ function multiply(a,b){
     return a*b;
 };
 function divide(a,b){
-    if( a===0 || b === 0 ){
+    if(b === 0 ){
         return "Can't divide by 0";
     }
     return a/b;
@@ -27,39 +27,64 @@ if(operator === "+"){
 let firstValue = "";
 let secondValue = "";
 let operatorString = "";
+let waitingforSecond = false;
 //alert(operate(operator, firstValue, secondValue));
 
 const buttons= document.querySelectorAll(".number");
 const display = document.getElementById("display");
 buttons.forEach((button) => {
     button.addEventListener("click", () => {
-        display.textContent += button.textContent;;
+        if(!waitingforSecond){
+            console.log("first Value");
+            firstValue += button.textContent;
+            display.textContent += " " + button.textContent;
+            waitingforSecond = true;
+        } else{
+            console.log("Second Value");
+            secondValue += button.textContent;
+            display.textContent += " " + button.textContent;
+        }
+        
     });
 });
 const operators = document.querySelectorAll(".operator");
 operators.forEach((operator) => {
     operator.addEventListener("click", () => {
-        display.textContent += operator.textContent;
+        operatorString = operator.textContent;
+        display.textContent += " " + operator.textContent;
     });
 })
 const equalsoperator = document.querySelector(".equalsoperator");
 equalsoperator.addEventListener("click", () => {
-    const equationSplit = display.textContent.split("");
-    firstValue = Number(equationSplit[0]);
-    operatorString = equationSplit[1];
-    secondValue = Number(equationSplit[2]);
-    display.textContent+= "=";
-    display.textContent += operate(operatorString, firstValue, secondValue);
-});
+    //firstValue = Number(equationSplit[0]);
+    //operatorString = equationSplit[1];
+    //secondValue = Number(equationSplit[2]);
+    console.log(firstValue);
+    console.log(secondValue);
+    //console.log(result);
+    if(firstValue != "" && secondValue != ""){
+        let result = operate(operatorString, Number(firstValue), Number(secondValue));
+        display.textContent += " = ";
+        display.textContent += result;
+        firstValue = result.toString();
+        secondValue = "";
+        waitingforSecond = true;
+    } else{
+        console.log("nothing happened");
+    }
+}
+);
 const clearButton = document.querySelector(".clearButton");
 clearButton.addEventListener("click", () => {
     display.textContent = "";
+    firstValue = "";
+    secondValue = "";
+    waitingforSecond = false;
 });
 
 const ACbutton = document.querySelector(".ACbutton");
 ACbutton.addEventListener("click", () => {
-    let spliteq = display.textContent.split("");
-    const len = display.textContent.split("").length;
-    spliteq.splice(-1, 1);
-    display.textContent = spliteq.join("");
+    let spliteq = display.textContent.split(" ");
+    spliteq.pop();
+    display.textContent = spliteq.join(" ");
 });
