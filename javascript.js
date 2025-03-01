@@ -36,6 +36,12 @@ const buttons= document.querySelectorAll(".number");
 const display = document.getElementById("display");
 display.textContent = "";
 const dotoperator = document.querySelector(".dotoperator");
+const offbutton = document.querySelector(".offButton");
+const body = document.querySelector("body");
+
+offbutton.addEventListener("click" , () => {
+    body.textContent = "";
+})
 dotoperator.addEventListener("click", () => {
     display.textContent += dotoperator.textContent;
     if(!waitingforSecond){
