@@ -29,6 +29,7 @@ let secondValue = "";
 let operatorString = "";
 
 let waitingforSecond = false;
+let checkIfValid = true;
 //alert(operate(operator, firstValue, secondValue));
 
 const buttons= document.querySelectorAll(".number");
@@ -43,11 +44,9 @@ buttons.forEach((button) => {
     button.addEventListener("click", () => {
         
         if(!waitingforSecond){
-            console.log("first Value");
             firstValue += button.textContent;
             display.textContent += button.textContent;
         } else{
-            console.log("Second Value");
             secondValue += button.textContent;
             display.textContent += button.textContent;
         }
@@ -57,9 +56,18 @@ buttons.forEach((button) => {
 const operators = document.querySelectorAll(".operator");
 operators.forEach((operator) => {
     operator.addEventListener("click", () => {
-        operatorString = operator.textContent;
-        display.textContent += " " + operator.textContent + " ";
-        waitingforSecond = true;
+        if(checkIfValid){
+            operatorString = operator.textContent;
+            display.textContent += " " + operator.textContent + " ";
+            checkIfValid = false;
+            waitingforSecond = true;
+        } else{
+            display.textContent = "Invalid operation";
+            firstValue = "";
+            secondValue = "";
+            checkIfValid = true;
+        }
+        
     });
 })
 const equalsoperator = document.querySelector(".equalsoperator");
@@ -72,6 +80,7 @@ equalsoperator.addEventListener("click", () => {
     //console.log(result);
     if(firstValue != "" && secondValue != ""){
         let result = operate(operatorString, Number(firstValue), Number(secondValue));
+        checkIfValid = true;
         display.textContent += " = ";
         display.textContent += result;
         firstValue = result.toString();
