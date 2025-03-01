@@ -82,16 +82,16 @@ equalsoperator.addEventListener("click", () => {
     }
 }
 );
-const clearButton = document.querySelector(".clearButton");
-clearButton.addEventListener("click", () => {
+const ACButton = document.querySelector(".ACbutton");
+ACButton.addEventListener("click", () => {
     display.textContent = "";
     firstValue = "";
     secondValue = "";
     waitingforSecond = false;
 });
 
-const ACbutton = document.querySelector(".ACbutton");
-ACbutton.addEventListener("click", () => {
+const Deletebutton = document.querySelector(".DeleteButton");
+Deletebutton.addEventListener("click", () => {
     let spliteq = display.textContent.split(" ");
     spliteq.pop();
     display.textContent = spliteq.join(" ");
