@@ -38,6 +38,13 @@ display.textContent = "";
 const dotoperator = document.querySelector(".dotoperator");
 dotoperator.addEventListener("click", () => {
     display.textContent += dotoperator.textContent;
+    if(!waitingforSecond){
+        firstValue += dotoperator.textContent;
+
+    } else{
+        secondValue += dotoperator.textContent;
+    }
+    
 });
 
 buttons.forEach((button) => {
@@ -72,14 +79,10 @@ operators.forEach((operator) => {
 })
 const equalsoperator = document.querySelector(".equalsoperator");
 equalsoperator.addEventListener("click", () => {
-    //firstValue = Number(equationSplit[0]);
-    //operatorString = equationSplit[1];
-    //secondValue = Number(equationSplit[2]);
-    console.log(firstValue);
-    console.log(secondValue);
-    //console.log(result);
     if(firstValue != "" && secondValue != ""){
-        let result = operate(operatorString, Number(firstValue), Number(secondValue));
+        firstValue = parseFloat(firstValue);
+        secondValue = parseFloat(secondValue);
+        let result = operate(operatorString, firstValue, secondValue).toFixed(1);
         checkIfValid = true;
         display.textContent += " = ";
         display.textContent += result;
