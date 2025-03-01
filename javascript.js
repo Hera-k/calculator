@@ -27,22 +27,29 @@ if(operator === "+"){
 let firstValue = "";
 let secondValue = "";
 let operatorString = "";
+
 let waitingforSecond = false;
 //alert(operate(operator, firstValue, secondValue));
 
 const buttons= document.querySelectorAll(".number");
 const display = document.getElementById("display");
+display.textContent = "";
+const dotoperator = document.querySelector(".dotoperator");
+dotoperator.addEventListener("click", () => {
+    display.textContent += dotoperator.textContent;
+});
+
 buttons.forEach((button) => {
     button.addEventListener("click", () => {
+        
         if(!waitingforSecond){
             console.log("first Value");
             firstValue += button.textContent;
-            display.textContent += " " + button.textContent;
-            waitingforSecond = true;
+            display.textContent += button.textContent;
         } else{
             console.log("Second Value");
             secondValue += button.textContent;
-            display.textContent += " " + button.textContent;
+            display.textContent += button.textContent;
         }
         
     });
@@ -51,7 +58,8 @@ const operators = document.querySelectorAll(".operator");
 operators.forEach((operator) => {
     operator.addEventListener("click", () => {
         operatorString = operator.textContent;
-        display.textContent += " " + operator.textContent;
+        display.textContent += " " + operator.textContent + " ";
+        waitingforSecond = true;
     });
 })
 const equalsoperator = document.querySelector(".equalsoperator");
