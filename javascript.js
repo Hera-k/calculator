@@ -40,9 +40,11 @@ dotoperator.addEventListener("click", () => {
     display.textContent += dotoperator.textContent;
     if(!waitingforSecond){
         firstValue += dotoperator.textContent;
+        dotoperator.disabled = true;
 
     } else{
         secondValue += dotoperator.textContent;
+        dotoperator.disabled = true;
     }
     
 });
@@ -68,6 +70,7 @@ operators.forEach((operator) => {
             display.textContent += " " + operator.textContent + " ";
             checkIfValid = false;
             waitingforSecond = true;
+            dotoperator.disabled = false;
         } else{
             display.textContent = "Invalid operation";
             firstValue = "";
@@ -89,6 +92,7 @@ equalsoperator.addEventListener("click", () => {
         firstValue = result.toString();
         secondValue = "";
         waitingforSecond = true;
+        dotoperator.disabled = false;
     } else{
         console.log("nothing happened");
     }
@@ -100,6 +104,7 @@ ACButton.addEventListener("click", () => {
     firstValue = "";
     secondValue = "";
     waitingforSecond = false;
+    dotoperator.disabled = false;
 });
 
 const Deletebutton = document.querySelector(".DeleteButton");
