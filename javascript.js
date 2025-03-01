@@ -38,10 +38,12 @@ display.textContent = "";
 const dotoperator = document.querySelector(".dotoperator");
 const offbutton = document.querySelector(".offButton");
 const body = document.querySelector("body");
-
+const allbuttons = document.querySelectorAll("button");
 offbutton.addEventListener("click" , () => {
-    body.textContent = "";
-})
+    allbuttons.forEach((button) => {
+        button.disabled = true;
+    });
+});
 dotoperator.addEventListener("click", () => {
     display.textContent += dotoperator.textContent;
     if(!waitingforSecond){
